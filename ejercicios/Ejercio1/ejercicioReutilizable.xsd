@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+    <!-- TIPOS COMPLEJOS REUTILIZABLES-->
+    <xs:complexType name="tipoContacto">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string" />
+            <xs:element name="calle" type="xs:string" />
+            <xs:element name="ciudad" type="xs:string" />
+            <xs:element name="pais" type="xs:string" />
+            <xs:element name="codigo" minOccurs="0" type="xs:string" />
+            <xs:element name="vip" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoAgenda">
+        <xs:sequence>
+            <xs:element name="contacto" maxOccurs="unbounded" type="tipoContacto" />
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- ROOT -->
+    <xs:element name="agenda" type="tipoAgenda" />
+
+</xs:schema>
