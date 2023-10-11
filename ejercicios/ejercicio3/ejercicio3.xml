@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<empleados xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="ejercicio3.xsd">
+    <empleado codigo="1">
+        <nombre>pepe</nombre>
+        <apellidos>López García</apellidos>
+        <telefonos>
+            <telefono movil="true">66666666</telefono>
+            <!--<telefono movil="false">918888888</telefono>-->
+        </telefonos>
+        <fechaContratacion>2023-10-10</fechaContratacion>
+        <sueldo>1200.50</sueldo>
+
+    </empleado>
+</empleados>

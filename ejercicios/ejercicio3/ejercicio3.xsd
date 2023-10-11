@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- TIPOS COMPLEJOS REUTILIZABLES -->
+    <xs:complexType name="tipoTelefono">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="movil" type="xs:boolean"
+                    use="required" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="tipoTelefonos">
+        <xs:sequence>
+            <xs:element name="telefono" maxOccurs="unbounded" type="tipoTelefono">
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoEmpleado">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string" />
+            <xs:element name="apellidos" type="xs:string" />
+            <xs:element name="telefonos" type="tipoTelefonos" minOccurs="0"/>
+            <xs:element name="fechaContratacion" type="xs:date" />
+            <xs:element name="sueldo" type="xs:float" />
+        </xs:sequence>
+        <xs:attribute name="codigo" type="xs:short" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="tipoEmpleados">
+        <xs:sequence>
+            <xs:element name="empleado" type="tipoEmpleado"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ELEMENTO ROOT -->
+    <xs:element name="empleados" type="tipoEmpleados"/>
+
+</xs:schema>
