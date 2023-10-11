@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- ELEMENTO ROOT-->
+    <xs:element name="estudiantes" type="tipoEstudiantes"/>
+
+    <!-- TIPOS COMPLEJOS REUTILIZABLES -->
+    <xs:complexType name="tipoEstudiante">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string" />
+            <xs:element name="apellidos" type="xs:string" />
+            <xs:element name="edad" type="xs:positiveInteger" />
+        </xs:sequence>
+        <xs:attribute name="NIA" type="xs:string" use="required" />
+        <xs:attribute name="ciclo" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="tipoEstudiantes">
+        <xs:sequence>
+            <xs:element name="estudiante" type="tipoEstudiante"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+
+
+</xs:schema>

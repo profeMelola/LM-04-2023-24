@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- 1. TIPOS SIMPLES REUTILIZABLES. RESTRICCIONES-->
+    
+    <!-- El expediente de empezar por E y después 5 dígitos -->
+    <xs:simpleType name="tipoExp">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="E[0-9]{5}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- La matrícula tiene 4 dígitos y 3 letras mayúsculas -->
+    <xs:simpleType name="tipoMatricula">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{4}[A-Z]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Pagada sólo puede contener sí o no -->
+    <xs:simpleType name="tipoPagada">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="si"/>
+            <xs:enumeration value="no"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="tipoPagadaER">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="si|no|SI|NO|Si|No|sI"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- 2.TIPOS COMPLEJOS REUTILIZABLES-->
+    <xs:complexType name="tipoMulta">
+        <!-- Los elementos de la multa pueden estar desordenados. (ALL)-->
+        <xs:all>
+                <xs:element name="matricula" type="tipoMatricula" />
+                <xs:element name="tipo" type="xs:string" />
+                <xs:element name="importe" type="xs:string" />
+                <xs:element name="fecha" type="xs:string" />
+                <xs:element name="lugar" type="xs:string" />
+                <!-- Las observaciones son opcionales-->
+                <xs:element name="observaciones" minOccurs="0" type="xs:string" />
+                <xs:element name="pagada" type="tipoPagadaER" />
+        </xs:all>
+        <xs:attribute name="expediente" use="required" type="tipoExp" />
+    </xs:complexType>
+
+    <xs:complexType name="tipoMultas">
+        <xs:sequence>
+            <!-- Al menos habrá una multa. Sí porque el  minOccurss está a 1-->
+            <xs:element name="multa" maxOccurs="unbounded" type="tipoMulta"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- ELEMENTO ROOT-->
+    <xs:element name="multas" type="tipoMultas"/>
+    <!--  El expediente ha de ser único. PENDIENTE!!!!!! -->
+
+
+</xs:schema>
