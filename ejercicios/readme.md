@@ -34,6 +34,9 @@ Ten en cuenta que el Código es numérico y opcional.
 
 ```
 
+Además, debes crear un tipo simple construido (con restricción) para indicar que el código postal solo puede estar formado por 5 dígitos.
+
+
 # Ejercicio 2
 
 Crea para el siguiente XML un schema validador que sea capaz de representar la información sobre calificaciones de alumnos:
@@ -48,6 +51,11 @@ Crea para el siguiente XML un schema validador que sea capaz de representar la i
 </estudiantes>
 ```
 
+Además debes tener en cuenta:
+
+El atributo NIA debe estar formado 6 dígitos y es obligatorio.
+El atribto ciclo es opcional y con valor por defecto DAW
+
 # Ejercicio 3
 
 Crea un XML y su correspondiente schema validador para guardar la siguiente información de los empleados:
@@ -59,11 +67,20 @@ Crea un XML y su correspondiente schema validador para guardar la siguiente info
 - si es de un telefono movil tendrá el atributo booleano movil a true
 - fecha contratación yyyy-mm-dd, sueldo float.
 
+**Requisitos:**
+
+- Tendremos un XML con un elemento root llamado empleados que contendrá al menos un empleado.
+- El nombre tendrá una longitud máxima de 10 (restricción).
+- teléfonos será un nodo o elemento complejo que contendrá elementos hijos telefono.
+- El elemento teléfono puede aparecer como máximo 4 veces y es opcional. Si el elemento teléfono va a guardar un móvil entonces tendrá un atributo opcional llamado móvil con valor igual a true.
+
 # Ejercicio 4
 
 Crea un XML y su correspondiente schema validador para guardar la siguiente información de pedidos:
 
 ![image](https://github.com/profeMelola/LM-04-2023-24/assets/91023374/80173212-31ac-4e96-9097-63be4c824985)
+
+Vamos a añadir el tipo simple reutilizable maxLong10 para indicar que la longitud del título como máximo debe ser 10.
 
 
 ## Ejercicio 5
