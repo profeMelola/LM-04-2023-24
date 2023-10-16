@@ -124,6 +124,15 @@ Sea el siguiente XML, crea un schema validador, teniendo en cuenta:
 
 ![image](https://github.com/profeMelola/LM-04-2023-24/assets/91023374/32dbca01-a1ca-49bc-97af-9e66e2651ee1)
 
+## Ejercicio 8: formulario con extensiones (herencia)
+
+A continuación se muestra el contenido parcial de un formulario de registro:
+
+![image](https://github.com/profeMelola/LM-04-2023-24/assets/91023374/8864d13a-f492-4892-abf4-e9a149cb74c8)
+
+![image](https://github.com/profeMelola/LM-04-2023-24/assets/91023374/fb0c3600-9473-447d-b63b-4ab128f8edcc)
+
+
 
 
 
