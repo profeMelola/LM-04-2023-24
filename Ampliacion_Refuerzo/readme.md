@@ -1,9 +1,16 @@
-# Ejercicio 1: temperaturas
+# Ejercicios de ampliación o refuerzo
+
+Son ejercicios para reforzar lo aprendido en clase y realizarlos en casa, o para hacerlos en clase como ampliación por haber acabado los ejercicios propuestos en clase.
+
+Subiré las soluciones pasados unos días.
+
+
+## Ejercicio 1: temperaturas
 
 ![image](https://github.com/profeMelola/LM-04-2023-24/assets/91023374/1a1ae0b7-8758-4363-8a00-64ed70e00329)
 
 
-# Ejercicio 2: panel de vuelos
+## Ejercicio 2: panel de vuelos
 
 Si para representar la siguiente información ficticia:
 
