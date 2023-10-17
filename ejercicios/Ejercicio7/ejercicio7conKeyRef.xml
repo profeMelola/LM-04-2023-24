@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <multas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="ejercicio7.xsd">
-    <multa expediente="E44570">
+ xsi:noNamespaceSchemaLocation="ejercicio7v2.xsd">
+
+    <localidades>
+        <localidad cod="MAD">Madrid</localidad>
+        <localidad cod="BAR">Barcelona</localidad>
+    </localidades>
+
+    <multa expediente="E44570" codLocalidad="MAD">
         <matricula>3465BDZ</matricula>
         <tipo>Exceso de velocidad</tipo>
         <importe>120.50</importe>
@@ -10,7 +16,7 @@
         <observaciones>Zona muy transitada</observaciones>
         <pagada>No</pagada>
     </multa>
-    <multa expediente="E44571">
+    <multa expediente="E44571" codLocalidad="BAR">
         <matricula>3465BDJ</matricula>
         <tipo>Exceso de velocidad</tipo>
         <importe>120.50</importe>
@@ -18,14 +24,5 @@
         <lugar>Calle Anastasia 43</lugar>
         <observaciones>Zona muy transitada</observaciones>
         <pagada>No</pagada>
-    </multa>
-
-    <multa expediente="E44572">
-        <matricula>8890JFK</matricula>
-        <importe>120</importe>
-        <fecha>2015-05-07</fecha>
-        <lugar>Calle Anastasia 43</lugar>
-        <tipo>Estacionamiento carril bus</tipo>
-        <pagada>SI</pagada>
     </multa>
 </multas>

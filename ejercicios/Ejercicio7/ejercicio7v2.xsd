@@ -45,10 +45,26 @@
                 <xs:element name="pagada" type="tipoPagadaER" />
         </xs:all>
         <xs:attribute name="expediente" use="optional" type="tipoExp" />
+        <xs:attribute name="codLocalidad" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="tipoLocalidades">
+        <xs:sequence>
+            <xs:element name="localidad" maxOccurs="unbounded" type="tipoLocalidad"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoLocalidad">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="cod" use="required" />
+            </xs:extension>
+        </xs:simpleContent>
     </xs:complexType>
 
     <xs:complexType name="tipoMultas">
         <xs:sequence>
+            <xs:element name="localidades" maxOccurs="unbounded" type="tipoLocalidades"/>
             <!-- Al menos habrá una multa. Sí porque el  minOccurss está a 1-->
             <xs:element name="multa" maxOccurs="unbounded" type="tipoMulta"/>
         </xs:sequence>
@@ -73,8 +89,19 @@
         <xs:key name="keyMatricula">
             <xs:selector xpath="multa"/>
             <xs:field xpath="matricula"/>
-
         </xs:key>
+
+        <xs:key name="keyLocalidad">
+            <xs:selector xpath="localidades/localidad"/>
+            <xs:field xpath="@cod"/>
+        </xs:key>
+
+        <xs:keyref name="keyRefLocalidad" refer="keyLocalidad">
+            <xs:selector xpath="multa"/>
+            <xs:field xpath="@codLocalidad"/>
+
+        </xs:keyref>
+
     </xs:element>
 
 
