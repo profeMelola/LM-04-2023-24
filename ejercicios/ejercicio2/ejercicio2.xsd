@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- restricciones -->
+  <xs:simpleType name="tipoNIA">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- TIPOS COMPLEJOS REUTILIZABLES-->
+  <xs:complexType name="tipoEstudiante">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string" />
+      <xs:element name="apellidos" type="xs:string" />
+    </xs:sequence>
+    <!-- el NIA debe ser texto-->
+    <xs:attribute name="NIA" type="tipoNIA" use="required" />
+    <xs:attribute name="ciclo" use="optional" default="DAW" />
+  </xs:complexType>
+
+  <xs:complexType name="tipoEstudiantes">
+    <xs:sequence>
+      <!-- el xml debe tener 2 o 3 estudiantes-->
+      <xs:element name="estudiante" type="tipoEstudiante" minOccurs="2" maxOccurs="3"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ELEMENTO ROOT-->
+  <xs:element name="estudiantes" type="tipoEstudiantes"/>
+
+</xs:schema>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pedidos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="ejercicio4.xsd">
+    <pedido idOrden="1">
+        <remitente>
+            <receptor>asdf</receptor>
+            <nombre>asdfa</nombre>
+            <direccion>asdf</direccion>
+            <ciudad>asdf</ciudad>
+            <pais>asdf</pais>
+        </remitente>
+        <libro>
+            <titulo>asddafsd f</titulo>
+            <notas>asdfas</notas>
+            <cantidad>2</cantidad>
+            <precio>125.50</precio>
+        </libro>
+    </pedido>
+</pedidos>

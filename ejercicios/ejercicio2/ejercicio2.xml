@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<estudiantes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="ejercicio2.xsd">
+  <estudiante NIA="123456" ciclo="DAW"> 
+    <nombre>María</nombre>
+    <apellidos>Fernández García</apellidos>    
+  </estudiante>
+  <estudiante NIA="123456"> 
+    <nombre>María</nombre>
+    <apellidos>Fernández García</apellidos>    
+  </estudiante>
+
+</estudiantes>

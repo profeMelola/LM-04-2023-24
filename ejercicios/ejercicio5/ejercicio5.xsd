@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="tipoDNI">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{8}[A-Z]{1}"/>
+        </xs:restriction>
+
+    </xs:simpleType>
+
+    <xs:simpleType name="tipoSexo">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="mujer"/>
+            <xs:enumeration value="hombre"/>
+            <xs:enumeration value="otro"/>
+        </xs:restriction>
+
+    </xs:simpleType>    
+
+    <xs:complexType name="tipoPersona">
+        <!--<xs:sequence>
+            <xs:element name="nombre" type="xs:string" />
+            <xs:element name="apellidos" type="xs:string" />
+        </xs:sequence>-->
+        <xs:group ref="nombreCompleto"/>
+        <xs:attribute name="dni" use="optional" type="tipoDNI"/>
+        <xs:attribute name="sexo" use="required" type="tipoSexo" />
+    </xs:complexType>
+
+    <xs:complexType name="tipoPersonas">
+        <xs:sequence>
+            <xs:element name="persona" maxOccurs="unbounded" type="tipoPersona"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Me he inventado crear un grupo -->
+    <xs:group name="nombreCompleto">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string" />
+            <xs:element name="apellidos" type="xs:string" />
+        </xs:sequence>
+    </xs:group>
+
+    <!-- xpath completo: personas/persona/@dni -->
+    <xs:element name="personas" type="tipoPersonas">
+        <xs:unique name="dniUnico">
+            <xs:selector xpath="persona"/>
+            <xs:field xpath="@dni"/>
+        </xs:unique>
+    </xs:element>
+
+</xs:schema>

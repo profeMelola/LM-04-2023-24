@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listaCompra xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="ejercicio6.xsd">
+    <item cantidad="1" tipo="unidad">barra de pan</item>
+    <item cantidad="2" tipo="kg">patatas</item>
+    <item cantidad="7" tipo="litro">leche</item>
+</listaCompra>

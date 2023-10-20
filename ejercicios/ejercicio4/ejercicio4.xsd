@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- TIPOS SIMPLES. RESTRICCIONES-->
+    <xs:simpleType name="tipoTitulo">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="10"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- TIPOS COMPLEJOS REUTILIZABLES -->
+    <xs:complexType name="tipoRemitente">
+        <xs:sequence>
+            <xs:element name="receptor" type="xs:string" />
+            <xs:element name="nombre" type="xs:string" />
+            <xs:element name="direccion" type="xs:string" />
+            <xs:element name="ciudad" type="xs:string" />
+            <xs:element name="pais" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoLibro">
+        <xs:sequence>
+            <xs:element name="titulo" type="tipoTitulo" />
+            <xs:element name="notas" type="xs:string" />
+            <xs:element name="cantidad" type="xs:positiveInteger" />
+            <xs:element name="precio" type="xs:decimal" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoPedido">
+        <xs:sequence>
+            <xs:element name="remitente" type="tipoRemitente"/>
+            <xs:element name="libro" type="tipoLibro"/>
+        </xs:sequence>
+        <xs:attribute name="idOrden" type="xs:integer" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="tipoPedidos">
+        <xs:sequence>
+            <xs:element name="pedido" type="tipoPedido">
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- root -->
+    <xs:element name="pedidos" type="tipoPedidos"/>
+</xs:schema>

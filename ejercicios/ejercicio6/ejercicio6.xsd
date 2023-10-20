@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="tipoTipo">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="unidad|kg|litro"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- inventado: la cantidad máxima de productos es 10 y la mínima 1 a comprar por item-->
+    <xs:simpleType name="limiteCantidad">
+        <xs:restriction base="xs:positiveInteger">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="10"/>
+        </xs:restriction>
+
+    </xs:simpleType>
+
+    <xs:complexType name="tipoItem">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="cantidad" type="limiteCantidad" use="required" />
+                <xs:attribute name="tipo" use="required" type="tipoTipo"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="tipoListCompra">
+        <xs:sequence>
+            <xs:element name="item" maxOccurs="unbounded" type="tipoItem"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="listaCompra" type="tipoListCompra"/>
+</xs:schema>

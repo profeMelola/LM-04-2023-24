@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<personas xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="ejercicio5.xsd">
+    <persona dni="54444444A" sexo="hombre">
+        <nombre>Mari</nombre>
+        <apellidos>Elola Rubio</apellidos>
+    </persona>
+    <persona dni="44444344A" sexo="mujer">
+        <nombre>Manolo</nombre>
+        <apellidos>Elola Rubio</apellidos>
+    </persona>
+    <persona dni="88888888A" sexo="otro">
+        <nombre>Pepe</nombre>
+        <apellidos>Elola Rubio</apellidos>
+    </persona>
+</personas>
