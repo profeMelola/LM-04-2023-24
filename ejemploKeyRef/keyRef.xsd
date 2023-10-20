@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- TIPOS COMPLEJOS -->
+    <xs:complexType name="tipoDir">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="coddir" use="required" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="tipoDirs">
+        <xs:sequence>
+            <xs:element name="director" maxOccurs="unbounded" type="tipoDir"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoPeli">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="direccion" use="required" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="tipoPelis">
+        <xs:sequence>
+            <xs:element name="pelicula" maxOccurs="unbounded" type="tipoPeli"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoCine">
+        <xs:sequence>
+            <xs:element name="directores" type="tipoDirs"/>
+            <xs:element name="peliculas" type="tipoPelis"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- root -->
+    <xs:element name="cine" type="tipoCine">
+        <!-- en el scope de root creo los unique, key y keyref -->
+        <xs:key name="keyCodDir">
+            <xs:selector xpath="directores/director"/>
+            <xs:field xpath="@coddir"/>
+        </xs:key>
+
+        <xs:keyref name="keyRefCodDir" refer="keyCodDir">
+            <xs:selector xpath="peliculas/pelicula"/>
+            <xs:field xpath="@direccion"/>
+        </xs:keyref>
+
+    </xs:element>
+    
+</xs:schema>
