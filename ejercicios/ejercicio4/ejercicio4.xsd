@@ -2,9 +2,11 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <!-- TIPOS SIMPLES. RESTRICCIONES-->
+    <!-- maxLong10: longitud del título como máximo debe ser 10 -->
     <xs:simpleType name="tipoTitulo">
         <xs:restriction base="xs:string">
             <xs:maxLength value="10"/>
+            <!--<xs:minLength value="1"/>-->
         </xs:restriction>
     </xs:simpleType>
 

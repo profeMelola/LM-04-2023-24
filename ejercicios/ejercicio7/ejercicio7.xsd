@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- 1. TIPOS SIMPLES. RESTRICCIONES-->
+    <!-- El expediente ha de empezar por E y después 5 dígitos-->
+    <xs:simpleType name="tipoExpediente">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="E[0-9]{2,5}" />
+        </xs:restriction>
+
+    </xs:simpleType>
+
+    <!-- La matrícula tiene 4 dígitos y 3 letras mayúsculas.-->
+    <xs:simpleType name="tipoMatricula">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{4}[A-Z]{3}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Pagada sólo puede contener sí o no -->
+    <xs:simpleType name="tipoPagada">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="si" />
+            <xs:enumeration value="no" />
+        </xs:restriction>
+
+    </xs:simpleType>
+
+    <xs:simpleType name="tipoPagada2">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="si|no|SI|NO|Si|No" />
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <!-- 2. TIPOS COMPLEJOS REUTILIZABLES -->
+    <xs:complexType name="tipoMulta">
+        <!-- Los elementos de la multa pueden estar desordenados -->
+        <xs:all>
+            <xs:element name="matricula" type="tipoMatricula" />
+            <xs:element name="tipo" type="xs:string" />
+            <xs:element name="importe" type="xs:string" />
+            <xs:element name="fecha" type="xs:string" />
+            <xs:element name="lugar" type="xs:string" />
+            <!-- Las observaciones son opcionales. -->
+            <xs:element name="observaciones" minOccurs="0" type="xs:string" />
+            <xs:element name="pagada" type="tipoPagada2" />
+        </xs:all>
+        <xs:attribute name="expediente" use="optional" type="tipoExpediente" />
+        <xs:attribute name="codLocalidad" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="tipoLocalidad">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="cod" use="required" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="tipoLocalidades">
+        <xs:sequence>
+            <xs:element name="localidad" maxOccurs="unbounded" type="tipoLocalidad"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoMultas">
+        <xs:sequence>
+            <xs:element name="localidades" minOccurs="1" maxOccurs="1" type="tipoLocalidades"/>
+            <!-- al menos habrá una multa porque minOcurrs es 0 y maxOcurrs es unbound-->
+            <xs:element name="multa" maxOccurs="unbounded" type="tipoMulta" />
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- ELEMENTO ROOT -->
+    <xs:element name="multas" type="tipoMultas">
+        <!-- CLAVE ÚNICA OBLIGATORIA-->
+        <xs:key name="keyExpediente">
+            <xs:selector xpath="multa" />
+            <xs:field xpath="@expediente" />
+        </xs:key>
+
+        <!-- VALOR ÚNICO PERO NO OBLIGATORIO-->
+        <!--<xs:unique
+        name="uniqueExp">
+            <xs:selector xpath="multa"/>
+            <xs:field xpath="@expediente"/>
+        </xs:unique>-->
+
+        <!--
+        <xs:key name="keyMatricula">
+            <xs:selector xpath="multa"/>
+            <xs:field xpath="matricula"/>
+        </xs:key>
+        -->
+        <xs:key name="keyMatricula">
+            <xs:selector xpath="multa/matricula" />
+            <xs:field xpath="." />
+        </xs:key>
+
+        <!-- QUIERO QUE EL ATRIBUTO COD DE LOCALIDAD COMO KEY-->
+        <xs:key name="keyLocalidad">
+            <xs:selector xpath="localidades/localidad"/>
+            <xs:field xpath="@cod"/>
+        </xs:key>
+        <!-- KEYREF -->
+        <xs:keyref name="keyRefLocalidad" refer="keyLocalidad">
+            <xs:selector xpath="multa"/>
+            <xs:field xpath="@codLocalidad"/>
+
+        </xs:keyref>
+
+    </xs:element>
+
+</xs:schema>

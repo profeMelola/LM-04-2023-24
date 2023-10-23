@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+    <!-- **************************** -->
+    <!-- TIPOS SIMPLES CON RESTRICCIONES -->
+    <!-- **************************** -->
+    <!-- El DNI consta de 8 dígitos y una letra mayúscula al final. -->
     <xs:simpleType name="tipoDNI">
         <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9]{8}[A-Z]{1}"/>
+            <xs:pattern value="[0-9]{8}[A-Z]"/>
         </xs:restriction>
 
     </xs:simpleType>
 
+    <!-- ha de ser mujer, hombre, otro.-->
     <xs:simpleType name="tipoSexo">
         <xs:restriction base="xs:string">
             <xs:enumeration value="mujer"/>
@@ -16,6 +21,10 @@
         </xs:restriction>
 
     </xs:simpleType>    
+
+    <!-- **************************** -->
+    <!-- TIPOS COMPLEJOS REUTILIZABLES -->
+    <!-- **************************** -->
 
     <xs:complexType name="tipoPersona">
         <!--<xs:sequence>
@@ -33,6 +42,9 @@
         </xs:sequence>
     </xs:complexType>
 
+    <!-- **************************** -->
+    <!-- GRUPOS -->
+    <!-- **************************** -->
     <!-- Me he inventado crear un grupo -->
     <xs:group name="nombreCompleto">
         <xs:sequence>
@@ -41,8 +53,11 @@
         </xs:sequence>
     </xs:group>
 
-    <!-- xpath completo: personas/persona/@dni -->
+    
+    <!-- ELEMENTO ROOT -->
+    <!-- xpath completo (para próxima unidad): personas/persona/@dni -->
     <xs:element name="personas" type="tipoPersonas">
+        <!-- Cada persona tiene un DNI único como atributo, aunque es opcional ponerlo -->
         <xs:unique name="dniUnico">
             <xs:selector xpath="persona"/>
             <xs:field xpath="@dni"/>

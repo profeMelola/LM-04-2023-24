@@ -2,6 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <!-- tipos simples. Restricciones-->
+    <!--  código postal solo puede estar formado por 5 dígitos.-->
     <xs:simpleType name="tipoCod">
         <xs:restriction base="xs:string">
             <xs:pattern value="[0-9]{5}"/>

@@ -2,6 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <!-- restricciones -->
+  <!-- El atributo NIA debe estar formado 6 dígitos -->
   <xs:simpleType name="tipoNIA">
     <xs:restriction base="xs:string">
       <xs:pattern value="[0-9]{6}"/>
@@ -16,6 +17,7 @@
     </xs:sequence>
     <!-- el NIA debe ser texto-->
     <xs:attribute name="NIA" type="tipoNIA" use="required" />
+    <!-- El atribto ciclo es opcional y con valor por defecto DAW -->
     <xs:attribute name="ciclo" use="optional" default="DAW" />
   </xs:complexType>
 
