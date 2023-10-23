@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="temperaturas1.xsd">
+    <registro>
+        <provincia>Madrid</provincia>
+        <fecha>2021-12-26</fecha>
+        <temperatura min="-50" max="50" />
+        <incidencias>
+            <incidencia severidad="baja">nieve</incidencia>
+            <incidencia severidad="alta">frio</incidencia>
+            <incidencia severidad="media">calor</incidencia>
+        </incidencias>
+    </registro>
+</registros>

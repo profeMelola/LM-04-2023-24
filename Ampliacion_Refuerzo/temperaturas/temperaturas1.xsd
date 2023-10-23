@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- TIPOS COMPLEJOS -->
+    <xs:complexType name="tipoTemperatura">
+        <xs:attributeGroup ref="grupoAtributosTemperatura"/>
+    </xs:complexType>
+
+    <xs:complexType name="tipoIncidencia">
+        <xs:simpleContent>
+            <xs:extension base="tipoNombreIncidencia">
+                <xs:attribute name="severidad" use="required" type="tipoSeveridad"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="tipoIncidencias">
+        <xs:sequence>
+            <xs:element name="incidencia" maxOccurs="unbounded" type="tipoIncidencia"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoRegistro">
+        <xs:group ref="grupoElementosRegistro"/>
+    </xs:complexType>
+
+    <xs:complexType name="tipoRegistros">
+        <xs:sequence>
+            <xs:element name="registro" type="tipoRegistro">
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>    
+
+    <!-- GRUPOS -->
+    <xs:group name="grupoElementosRegistro">
+        <xs:sequence>
+            <xs:element name="provincia" type="xs:string" />
+            <xs:element name="fecha" type="xs:date" />
+            <xs:element name="temperatura" type="tipoTemperatura"/>
+            <xs:element name="incidencias" type="tipoIncidencias"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:attributeGroup name="grupoAtributosTemperatura">
+        <xs:attribute name="min" type="limiteTemp" use="required" />
+        <xs:attribute name="max" type="limiteTemp" use="required" />
+    </xs:attributeGroup>
+
+    <!-- TIPOS SIMPLES CONSTRUIDOS -->
+    <xs:simpleType name="limiteTemp">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="-50"/>
+            <xs:maxInclusive value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="tipoSeveridad">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="alta"/>
+            <xs:enumeration value="media"/>
+            <xs:enumeration value="baja"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="tipoNombreIncidencia">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(frio|nieve|llueve|calor)"/>
+        </xs:restriction>
+
+    </xs:simpleType>
+
+    <!-- ELEMENTO ROOT -->
+    <xs:element name="registros" type="tipoRegistros"/>
+        
+</xs:schema>

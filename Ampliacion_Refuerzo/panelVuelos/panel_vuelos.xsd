@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- TIPOS SIMPLES CONSTRUIDOS -->
+    <xs:simpleType name="tipoEstado">
+        <xs:restriction base="xs:string">
+            <!--<xs:pattern value="(C|E|R)"/>-->
+            <xs:pattern value="[CER]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- TIPOS COMPLEJOS -->
+    <xs:complexType name="tipoVuelo">
+        <xs:sequence>
+            <xs:element name="diario" minOccurs="0" />
+            <xs:element name="origen" type="xs:string" />
+            <xs:element name="destino" type="xs:string" />
+            <xs:element name="hora-salida" type="xs:time" />
+            <xs:element name="hora-llegada" type="xs:time" />
+        </xs:sequence>
+        <!--<xs:attribute name="codigo" use="required" type="xs:ID"/>-->
+        <xs:attribute name="codigo" use="required" />
+        <xs:attribute name="estado" use="optional" type="tipoEstado" default="E"/>
+    </xs:complexType>
+
+    <xs:complexType name="tipoVuelos">
+        <xs:sequence>
+            <xs:element name="vuelo" minOccurs="0" maxOccurs="unbounded" type="tipoVuelo"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoAeropuerto">
+        <xs:all>
+            <xs:element name="nombre" type="xs:string" />
+            <xs:element name="vuelos" type="tipoVuelos"/>
+            <xs:element name="fecha" type="xs:string" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:element name="aeropuerto" type="tipoAeropuerto">
+        <!--<xs:unique name="codigoVuelo">
+            <xs:selector xpath="vuelos/vuelo"/>
+            <xs:field xpath="@codigo"/>
+        </xs:unique>-->
+        <xs:key name="codigoVuelo">
+            <xs:selector xpath="vuelos/vuelo"/>
+            <xs:field xpath="@codigo"/>
+        </xs:key>
+
+    </xs:element>
+</xs:schema>
